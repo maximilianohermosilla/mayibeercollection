@@ -9,9 +9,12 @@ import { LayoutService } from './service/app.layout.service';
 })
 export class AppMenuComponent implements OnInit {
 
+    token: string = "";
     model: any[] = [];
 
-    constructor(public layoutService: LayoutService) { }
+    constructor(public layoutService: LayoutService) { 
+        this.token = localStorage.getItem('AuthToken') ?? "";       
+    }
 
     ngOnInit() {
         this.model = [
@@ -24,11 +27,12 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'ADMINISTRACIÓN',
                 items: [
-                    { label: 'Perfil', icon: 'pi pi-fw pi-user', routerLink: ['/pages/perfil'] },
-                    { label: 'Cervezas', icon: 'pi pi-fw pi-list', routerLink: ['/pages/cervezas'] },
-                    { label: 'Marcas', icon: 'pi pi-fw pi-image', routerLink: ['/pages/marcas'] }, 
-                    { label: 'Ciudades', icon: 'pi pi-fw pi-image', routerLink: ['/pages/ciudades'] }, 
-                    { label: 'Estilos', icon: 'pi pi-fw pi-image', routerLink: ['/pages/estilos'] },                    
+                    { label: 'Perfil', icon: 'pi pi-fw pi-user', routerLink: ['/administracion/perfil'] , disabled: this.token == "" },
+                    { label: 'Cervezas', icon: 'pi pi-fw pi-inbox', routerLink: ['/administracion/cervezas'] , disabled: this.token == "" },
+                    { label: 'Marcas', icon: 'pi pi-fw pi-shopping-bag', routerLink: ['/administracion/marcas'] , disabled: this.token == "" }, 
+                    { label: 'Estilos', icon: 'pi pi-fw pi-tag', routerLink: ['/administracion/estilos'] , disabled: this.token == "" },                    
+                    { label: 'Países', icon: 'pi pi-fw pi-flag', routerLink: ['/administracion/paises'] , disabled: this.token == "" }, 
+                    { label: 'Ciudades', icon: 'pi pi-fw pi-map-marker', routerLink: ['/administracion/ciudades'] , disabled: this.token == "" }, 
                 ]
             },           
             {

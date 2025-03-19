@@ -52,4 +52,8 @@ export class LoginComponent {
             }
         });
     }
+
+    public goHome(){
+        this.router.navigate(['/pages/inicio']);
+    }
 }

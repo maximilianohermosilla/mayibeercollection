@@ -2,7 +2,7 @@
     <div class="grid justify-content-center p-2 lg:p-0" style="min-width:80%">
         <div class="col-12 mt-5 xl:mt-0 text-center">
             <img src="../../../../assets/{{layoutService.config.colorScheme === 'light' ? 'logo' : 'logo'}}.png"
-                alt="MayiBeerCollection logo" class="mb-5" style="width:120px; height:60px;">
+                alt="MayiBeerCollection logo" class="mb-5" style="width:220px; height:70px;">
         </div>
         <div class="col-12 xl:col-6">
             <div class="h-full w-full m-0 py-7 px-4"
@@ -32,6 +32,8 @@
                     </div>
                     <button pButton pRipple label="Ingresar" class="w-full p-3 text-xl mb-4"
                         (click)="authenticate()"></button>
+                    <button pButton pRipple label="Seguir como invitado" class="p-element p-ripple p-button-outlined p-button-warning w-full p-3 text-xl mb-4"
+                        (click)="goHome()"></button>
                 </div>
             </div>
         </div>

@@ -10,8 +10,9 @@ import { TokenGuard } from './core/guards/token-guard';
             {
                 path: '', component: AppLayoutComponent,
                 children: [
-                    { path: '', loadChildren: () => import('./features/pages/pages.module').then(m => m.PagesModule), canActivate: [TokenGuard] },
-                    { path: 'pages', loadChildren: () => import('./features/pages/pages.module').then(m => m.PagesModule), canActivate: [TokenGuard] },
+                    { path: '', loadChildren: () => import('./features/pages/pages.module').then(m => m.PagesModule) },
+                    { path: 'pages', loadChildren: () => import('./features/pages/pages.module').then(m => m.PagesModule) },
+                    { path: 'administracion', loadChildren: () => import('./features/administracion/administracion.module').then(m => m.AdministracionModule), canActivate: [TokenGuard] },
                 ],
             },
             { path: 'auth', loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule) },
