@@ -1,0 +1,109 @@
+<div class="grid">
+    <div class="col-12">
+            <div class="flex justify-content-between mb-3">
+                <div *ngIf="editionEnabled()">
+                    <p><b>Usuario:</b> {{userName}}</p>
+                </div>
+                <div>
+                    <button pButton class="p-button p-button-success" label="Agregar" icon="pi pi-plus"
+                        (click)="openFormCerveza(undefined)" *ngIf="editionEnabled()"></button>
+                </div>
+            </div>
+
+            <p-dataView #dv [value]="listaCervezasFiltradas" [paginator]="true" [rows]="9" filterBy="nombre"
+                layout="grid">
+                <ng-template pTemplate="header">
+                    <div class="grid grid-nogutter flex-column md:flex-row justify-content-between gap-2">
+                        <span class="p-input-icon-left mb-2 md:mb-0">
+                            <i class="pi pi-search"></i>
+                            <input type="search" pInputText placeholder="Buscar" (input)="onFilter(dv, $event)"
+                                [(ngModel)]="nombreCerveza">
+                        </span>
+
+                        <p-dropdown [style]="{'minWidth':'200px'}" [options]="listaMarcas" placeholder="Marcas"
+                            [(ngModel)]="marcaSeleccionada" (onChange)="onFilterMarca(dv, $event)"></p-dropdown>
+
+                        <p-dropdown [style]="{'minWidth':'200px'}" [options]="listaEstilos" placeholder="Estilos"
+                            [(ngModel)]="estiloSeleccionado" (onChange)="onFilterEstilo(dv, $event)"></p-dropdown>
+
+                        <p-dropdown [style]="{'minWidth':'200px'}" [options]="listaPaises" placeholder="Paises"
+                            [(ngModel)]="paisSeleccionado" (onChange)="onFilterPais(dv, $event)"></p-dropdown>
+
+                        <p-dropdown [style]="{'minWidth':'200px'}" [options]="listaCiudades" placeholder="Ciudades"
+                            [(ngModel)]="ciudadSeleccionada" (onChange)="onFilterCiudad(dv, $event)"></p-dropdown>
+                            
+                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                    </div>
+                </ng-template>
+
+                <ng-template let-cerveza pTemplate="listItem">
+                    <div class="col-12">
+                        <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
+                            <img [src]="cerveza.imagen" [alt]="cerveza.nombre" (error)="cerveza.imagen = defaultImage"
+                                class="my-4 md:my-0 w-9 md:w-10rem shadow-2 mr-5" />
+                            <div class="flex-1 text-center md:text-left">
+                                <div class="font-bold text-2xl">{{cerveza.nombre}}</div>
+                                <div class="mb-3">{{cerveza.descripcion}}</div>
+                                <div class="flex align-items-center mt-2">
+                                    <ng-container *ngFor="let cerveza of cerveza.cervezaPlataformas; let i = index;">
+                                        <img class="mr-2" [src]="cerveza.plataforma.imagen"
+                                            [alt]="cerveza.plataforma.nombre" width="20px" height="20px">
+                                        @if(cerveza.url == ""){
+                                        <span class="font-semibold mr-4">{{cerveza.plataforma.nombre}}</span>
+                                        }
+                                        @else{
+                                        <a target="_blank" [href]="cerveza.url"
+                                            class="font-semibold mr-4">{{cerveza.plataforma.nombre}}</a>
+                                        }
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <div>
+                                <button pButton class="p-button" label="Editar" icon="pi pi-pencil" *ngIf="editionEnabled()"
+                                    (click)="openFormCerveza(cerveza)"></button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-template let-cerveza pTemplate="gridItem">
+                    <div class="col-12 md:col-4">
+                        <div class="card p-3 m-3 border-1 surface-border">
+                            <div class="flex align-items-center justify-content-between">
+                                <div class="flex align-items-center">
+                                    <ng-container *ngFor="let cerveza of cerveza.cervezaPlataformas; let i = index;">
+                                        <img class="mr-2" [src]="cerveza.plataforma.imagen"
+                                            [alt]="cerveza.plataforma.nombre" width="20px" height="20px">
+                                        @if(cerveza.url == ""){
+                                        <span class="font-semibold mr-4">{{cerveza.plataforma.nombre}}</span>
+                                        }
+                                        @else{
+                                        <a target="_blank" [href]="cerveza.url"
+                                            class="font-semibold mr-4">{{cerveza.plataforma.nombre}}</a>
+                                        }
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <img [src]="cerveza.imagen" [alt]="cerveza.nombre"
+                                    (error)="cerveza.imagen = defaultImage" class="w-full shadow-2 my-1 mx-0" />
+                                <div class="text-2xl font-bold">{{cerveza.nombre}}</div>
+                                <div class="mb-3">{{cerveza.descripcion}}</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center mt-2">
+                                <button pButton class="p-button" label="Editar" icon="pi pi-pencil" *ngIf="editionEnabled()"
+                                    (click)="openFormCerveza(cerveza)"></button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataView>
+            <div class="flex justify-content-center mt-1">
+                <span class="font-semibold mr-4">Total: {{listaCervezasFiltradas.length}}</span>
+            </div>
+        </div>
+    <p-dialog header="Cerveza" [(visible)]="display" [modal]="true" showEffect="fade"
+        [style]="{width: '50vw', height: '95vh'}" [breakpoints]="{'960px': '75vw'}">
+        <app-form-cerveza [cerveza]="cervezaSeleccionada()"></app-form-cerveza>
+    </p-dialog>
+</div>

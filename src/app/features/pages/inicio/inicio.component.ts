@@ -7,9 +7,6 @@ import { Component, OnInit } from '@angular/core';
 export class InicioComponent implements OnInit {
 
     ngOnInit(): void {
-        const token = localStorage.getItem('AuthToken') ?? "";
-        //console.log(token)
+        
     }
 }
-
-

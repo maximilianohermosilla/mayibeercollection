@@ -33,6 +33,10 @@ export class TokenService {
     window.localStorage.removeItem(AUTHORITIES_KEY);
     window.localStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
   }
+  
+  public isAuthenticated(): boolean{
+    return localStorage.getItem(TOKEN_KEY) != "";
+  }
 
   public getToken(): string | null{
     return localStorage.getItem(TOKEN_KEY);
