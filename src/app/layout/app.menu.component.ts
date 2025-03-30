@@ -13,7 +13,7 @@ export class AppMenuComponent implements OnInit {
     model: any[] = [];
 
     constructor(public layoutService: LayoutService) { 
-        this.token = localStorage.getItem('AuthToken') ?? "";       
+        this.token = localStorage.getItem('AuthToken') ?? "";
     }
 
     ngOnInit() {

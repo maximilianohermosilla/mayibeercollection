@@ -78,10 +78,8 @@ export class GrillaCervezasComponent implements OnInit {
   }
 
   public getAllCervezas() {
-    this.cervezasService.GetAll(this.marcaSeleccionada.toString(),
-      this.estiloSeleccionado.toString(),
-      this.ciudadSeleccionada.toString(),
-      this.paisSeleccionado.toString(), true).subscribe((response) => {
+    this.cervezasService.GetAll(this.marcaSeleccionada.toString(), this.estiloSeleccionado.toString(),
+      this.ciudadSeleccionada.toString(), this.paisSeleccionado.toString(), true).subscribe((response) => {
         this.listaCervezas = response;
         this.listaCervezasFiltradas = response;
       })
@@ -142,7 +140,17 @@ export class GrillaCervezasComponent implements OnInit {
   }
 
   public onFilter(dv: DataView, event: any) {
+    this.nombreCerveza = (event.target as HTMLInputElement).value
     dv.filter((event.target as HTMLInputElement).value);
+  }
+
+  clear() {
+    this.marcaSeleccionada = 0;
+    this.estiloSeleccionado = 0;
+    this.paisSeleccionado = 0;
+    this.ciudadSeleccionada = 0;    
+    this.nombreCerveza = "";
+    this.getAllCervezas();
   }
 
   public openFormCerveza(Cerveza: Cerveza | undefined) {
