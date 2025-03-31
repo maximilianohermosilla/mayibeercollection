@@ -27,4 +27,20 @@ export class PaisesService {
             return data;
         }));
     }
+
+    public Update(element: Pais): Observable<any> {
+        let urlService = `${this.url}/Pais?id=${element.id}`
+
+        return this.http.put<any>(urlService, element).pipe(map(data => {
+            return data;
+        }));
+    }
+
+    public Delete(element: Pais): Observable<any> {
+        let urlService = `${this.url}/Pais/${element.id}`
+
+        return this.http.delete<any>(urlService).pipe(map(data => {
+            return data;
+        }));
+    }
 }

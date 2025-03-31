@@ -27,4 +27,20 @@ export class EstilosService {
             return data;
         }));
     }
+
+    public Update(element: Estilo): Observable<any> {
+        let urlService = `${this.url}/Estilo?id=${element.id}`
+
+        return this.http.put<any>(urlService, element).pipe(map(data => {
+            return data;
+        }));
+    }
+
+    public Delete(element: Estilo): Observable<any> {
+        let urlService = `${this.url}/Estilo/${element.id}`
+
+        return this.http.delete<any>(urlService).pipe(map(data => {
+            return data;
+        }));
+    }
 }

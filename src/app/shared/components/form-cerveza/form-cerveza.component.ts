@@ -80,6 +80,7 @@ export class FormCervezaComponent implements OnInit{
         });
       } else {
         let cerveza: Cerveza = {
+          id: 0,
           nombre: '',
           ibu: undefined,
           alcohol: undefined,
@@ -191,6 +192,10 @@ export class FormCervezaComponent implements OnInit{
           setTimeout(() => { window.location.reload() }, 1000);
         });
       }
+    }
+    else{      
+      this.msgs = [];
+      this.msgs.push({ severity: 'error', summary: 'Error', detail: 'Debe completar todos los campos requeridos' });
     }
   }
 

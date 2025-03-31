@@ -31,7 +31,7 @@ export class CervezasService {
     }
     
     public Update(element: Cerveza): Observable<any> {
-        let urlService = `${this.url}/Cerveza/`
+        let urlService = `${this.url}/Cerveza?id=${element.id}`
 
         return this.http.put<any>(urlService, element).pipe(map(data => {
             return data;

@@ -27,4 +27,20 @@ export class CiudadesService {
             return data;
         }));
     }
+
+    public Update(element: Ciudad): Observable<any> {
+        let urlService = `${this.url}/Ciudad?id=${element.id}`
+
+        return this.http.put<any>(urlService, element).pipe(map(data => {
+            return data;
+        }));
+    }
+
+    public Delete(element: Ciudad): Observable<any> {
+        let urlService = `${this.url}/Ciudad/${element.id}`
+
+        return this.http.delete<any>(urlService).pipe(map(data => {
+            return data;
+        }));
+    }
 }

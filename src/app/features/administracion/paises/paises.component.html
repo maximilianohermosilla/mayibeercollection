@@ -2,7 +2,9 @@
     <div class="col-12">
         <div class="card">
             <h4>Paises Page</h4>
-            <app-grilla-nombre-imagen [title]="'País'" [elements]="listaPaises"></app-grilla-nombre-imagen>
+            <app-grilla-nombre-imagen [title]="'País'" [elements]="listaPaises"
+                (outputGrillaElement)="handleElement($event)"
+                (deleteGrillaElement)="handleDeleteElement($event)"></app-grilla-nombre-imagen>
         </div>
     </div>
 </div>

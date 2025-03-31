@@ -53,6 +53,7 @@ export class FormCiudadesComponent implements OnInit{
         });
       } else {
         let element: Ciudad = {
+          id: 0,
           nombre: '',
           idPais: 0,
         };

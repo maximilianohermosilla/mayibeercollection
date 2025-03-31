@@ -27,4 +27,20 @@ export class MarcasService {
             return data;
         }));
     }
+    
+    public Update(element: Marca): Observable<any> {
+        let urlService = `${this.url}/Marca?id=${element.id}`
+
+        return this.http.put<any>(urlService, element).pipe(map(data => {
+            return data;
+        }));
+    }
+
+    public Delete(element: Marca): Observable<any> {
+        let urlService = `${this.url}/Marca/${element.id}`
+
+        return this.http.delete<any>(urlService).pipe(map(data => {
+            return data;
+        }));
+    }
 }

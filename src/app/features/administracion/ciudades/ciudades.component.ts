@@ -38,8 +38,28 @@ export class CiudadesComponent implements OnInit {
         });
     }
 
-    // public onFilterPais(dv: DataView, event: any) {
-    //     this.paisSeleccionado = event.value;
-    //     this.getAllCiudades();
-    // }
+
+    public handleElement(element: Ciudad) {
+        console.log('Dato recibido en page:', element);
+        if (element && element!.id! > 0) {
+            this.ciudadesService.Update(element).subscribe((response) => {
+                console.log(response);
+                this.getAllCiudades();
+            });
+        }
+        else {
+            this.ciudadesService.Create(element).subscribe((response) => {
+                console.log(response);
+                this.getAllCiudades();
+            });
+        }
+    }
+
+    public handleDeleteElement(element: Ciudad) {
+        console.log('Dato recibido para eliminar en page:', element);
+        this.ciudadesService.Delete(element).subscribe((response) => {
+            console.log(response);
+            this.getAllCiudades();
+        });
+    }
 }
