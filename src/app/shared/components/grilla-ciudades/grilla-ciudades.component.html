@@ -1,7 +1,7 @@
 <div class="grid">
     <div class="col-12">
-        <p-table #dt [value]="elements()" [columns]="cols" responsiveLayout="scroll" [rows]="10"
-            [globalFilterFields]="['nombre']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30,50,100]"
+        <p-table #dt [value]="listaCiudades" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+            [globalFilterFields]="['nombre', 'idPais']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30,50,100]"
             [showCurrentPageReport]="true"
             currentPageReportTemplate="{first}-{last} de {totalRecords} elementos" [rowHover]="true"
             dataKey="id">
@@ -19,19 +19,23 @@
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th>Imagen</th>
-                    <!-- <th pSortableColumn="name">Nombre <p-sortIcon field="nombre"></p-sortIcon></th> -->
-                    <th>Nombre</th>
+                    <th>País</th>
+                    <th pSortableColumn="idPais">País<p-sortIcon field="idPais"></p-sortIcon></th>
+                    <th pSortableColumn="nombre">Nombre<p-sortIcon field="nombre"></p-sortIcon></th>
                     <th>Acciones</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-element>
                 <tr>
-                    <td style="width:10%; min-width:10rem;"><span class="p-column-title">Image</span>
-                        <img [src]="element.imagen" [alt]="element.nombre" width="64px" height="64px" class="shadow-4" />
+                    <td style="width:10%; min-width:10rem;"><span class="p-column-title">País</span>
+                        <img [src]="element?.pais?.imagen" [alt]="element?.pais?.nombre" width="64px" height="64px" class="shadow-4" />
                     </td>
                     <td>
-                        <span class="p-column-title">Nombre</span>
+                        <span class="p-column-title">País</span>
+                        {{element?.pais?.nombre}}
+                    </td>
+                    <td>
+                        <span class="p-column-title" class="p-column-title">Nombre</span>
                         {{element.nombre}}
                     </td>
                     <td style="width:14%; min-width:10rem;">
@@ -47,7 +51,7 @@
         </p-table>
     </div>
     <p-dialog header={{title()}} [(visible)]="display" [modal]="true" showEffect="fade"
-        [style]="{width: '50vw'}" [breakpoints]="{'960px': '75vw'}">
-        <app-form-nombre-imagen [element]="selectedElement()"></app-form-nombre-imagen>
+        [style]="{width: '50vw', minHeight: '30vh', height: '90%'}" [breakpoints]="{'960px': '75vw'}">
+        <app-form-ciudades [element]="selectedElement()"></app-form-ciudades>
     </p-dialog>
 </div>
