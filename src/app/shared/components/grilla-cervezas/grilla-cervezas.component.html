@@ -72,22 +72,7 @@
 
             <ng-template let-cerveza pTemplate="gridItem">
                 <div class="col-12 md:col-4">
-                    <div class="card p-3 m-3 border-1 surface-border">
-                        <div class="flex align-items-center justify-content-between">
-                            <div class="flex align-items-center">
-                                <ng-container *ngFor="let cerveza of cerveza.cervezaPlataformas; let i = index;">
-                                    <img class="mr-2" [src]="cerveza.plataforma.imagen"
-                                        [alt]="cerveza.plataforma.nombre" width="20px" height="20px">
-                                    @if(cerveza.url == ""){
-                                    <span class="font-semibold mr-4">{{cerveza.plataforma.nombre}}</span>
-                                    }
-                                    @else{
-                                    <a target="_blank" [href]="cerveza.url"
-                                        class="font-semibold mr-4">{{cerveza.plataforma.nombre}}</a>
-                                    }
-                                </ng-container>
-                            </div>
-                        </div>
+                    <div class="card p-3 m-3 border-1 surface-border">                        
                         <div class="text-center">
                             <img [src]="cerveza.imagen" [alt]="cerveza.nombre" (error)="cerveza.imagen = defaultImage"
                                 class="w-full shadow-2 my-1 mx-0" />

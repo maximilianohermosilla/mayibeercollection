@@ -3,7 +3,6 @@ import { ChangeDetectorRef, Component, effect, inject, input, OnInit, signal } f
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Cerveza } from 'src/app/core/interfaces/cerveza';
-import { Plataforma } from 'src/app/core/interfaces/plataforma';
 import { MultiSelectModule } from "primeng/multiselect";
 import { InputTextModule } from "primeng/inputtext"
 import { CervezasService } from 'src/app/core/services/cervezas.service';
@@ -53,8 +52,6 @@ export class FormCervezaComponent implements OnInit{
   public defaultImage: string = "/assets/placeholder.jpg";
   public imagenUrl = signal<string | undefined>(undefined);
   public userId: string = "";
-  
-  public listaPlataformas: Plataforma[] = [];
 
   public msgs: Message[] = [];
 
@@ -175,7 +172,6 @@ export class FormCervezaComponent implements OnInit{
     if (this.formulario.valid) {
 
       console.log('Formulario enviado:', this.formulario.value);
-      this.filterPlataformas();
 
       if(this.formulario.value.id > 0){
         console.log("Update Cerveza");
@@ -198,22 +194,22 @@ export class FormCervezaComponent implements OnInit{
     }
   }
 
-  public filterPlataformas(){
-    let listaPlataformasNueva: any[] = [];
-    this.formulario.value.cervezaPlataformas.forEach((element: any) => {
-      console.log(element)
-      listaPlataformasNueva.push(element);
-    });
-    // let listaPlataformasEliminar = this.listaPlataformasPrevias?.filter((item: any) => !listaPlataformasNueva.includes(item.idPlataforma));
-    // let listaPlataformasAgregar = listaPlataformasNueva?.filter((id: any) => !this.listaPlataformasPrevias!.some((item) => item.idPlataforma === id));
+  // public filterPlataformas(){
+  //   let listaPlataformasNueva: any[] = [];
+  //   this.formulario.value.cervezaPlataformas.forEach((element: any) => {
+  //     console.log(element)
+  //     listaPlataformasNueva.push(element);
+  //   });
+  //   let listaPlataformasEliminar = this.listaPlataformasPrevias?.filter((item: any) => !listaPlataformasNueva.includes(item.idPlataforma));
+  //   let listaPlataformasAgregar = listaPlataformasNueva?.filter((id: any) => !this.listaPlataformasPrevias!.some((item) => item.idPlataforma === id));
 
-    // this.formulario.value.cervezaPlataformas = listaPlataformasAgregar.map((p: any) => { 
-    //   return { id: 0, idCerveza: this.formulario.value.id, idPlataforma: p, url: this.formulario.value.url, idUsuario: this.userId, fecha: new Date().toISOString(), 
-    //   //  plataforma: this.listaPlataformas.find((plataforma: any) => plataforma.id == p) 
-    //   }
-    // });
+  //   this.formulario.value.cervezaPlataformas = listaPlataformasAgregar.map((p: any) => { 
+  //     return { id: 0, idCerveza: this.formulario.value.id, idPlataforma: p, url: this.formulario.value.url, idUsuario: this.userId, fecha: new Date().toISOString(), 
+  //     //  plataforma: this.listaPlataformas.find((plataforma: any) => plataforma.id == p) 
+  //     }
+  //   });
     
-  }
+  // }
 
   public onDelete(){
     event?.preventDefault();
