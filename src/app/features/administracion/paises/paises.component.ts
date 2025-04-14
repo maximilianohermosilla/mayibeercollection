@@ -22,7 +22,6 @@ export class PaisesComponent implements OnInit {
     }
 
     public handleElement(element: Pais) {
-        console.log('Dato recibido en page:', element);
         if(element && element!.id! > 0){
             this.paisesService.Update(element).subscribe((response) => {
                 console.log(response);
@@ -38,7 +37,6 @@ export class PaisesComponent implements OnInit {
     }
 
     public handleDeleteElement(element: Pais) {
-        console.log('Dato recibido para eliminar en page:', element);
         this.paisesService.Delete(element).subscribe((response) => {
             console.log(response);
             this.getPaises();

@@ -12,11 +12,12 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { Elemento } from 'src/app/core/interfaces/elemento';
+import { FileUploadComponent } from "../file-upload/file-upload.component";
 
 @Component({
   selector: 'app-form-nombre-imagen',
   imports: [CommonModule, FormsModule, ReactiveFormsModule, MultiSelectModule, InputTextModule, ToastModule,
-    MessagesModule, ButtonModule, ConfirmDialogModule, DropdownModule, InputNumberModule],
+    MessagesModule, ButtonModule, ConfirmDialogModule, DropdownModule, InputNumberModule, FileUploadComponent],
   templateUrl: './form-nombre-imagen.component.html',
   styleUrl: './form-nombre-imagen.component.scss'
 })
@@ -124,6 +125,13 @@ export class FormNombreImagenComponent implements OnInit {
       reject: () => {
 
       },
+    });
+  }
+  
+  public onFileUploaded(event: any){
+    this.imagenUrl.set(event ?? "");
+    this.formulario.patchValue({
+      ...this.formulario.value, imagen: event
     });
   }
 }

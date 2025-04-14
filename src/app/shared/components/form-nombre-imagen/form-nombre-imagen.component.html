@@ -19,8 +19,12 @@
 
             <div class="mb-0">
                 <label for="imagen" class="block mb-1">Imagen:</label>
-                <input pInputText class="w-full mb-3" style="padding:0.5rem;" id="imagen" formControlName="imagen" placeholder="Imagen URL"
-                    (blur)="onImagenUrlChange()" />
+
+                <div class="p-inputgroup">
+                    <input pInputText class="w-full mb-3" style="padding:0.5rem;" id="imagen" formControlName="imagen"
+                        (blur)="onImagenUrlChange()" />
+                    <app-file-upload (emitFileUpload)="onFileUploaded($event)"></app-file-upload>
+                </div>
             </div>
         </div>
     </div>

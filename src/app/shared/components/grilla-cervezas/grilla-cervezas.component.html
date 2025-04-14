@@ -93,6 +93,6 @@
     </div>
     <p-dialog header="Cerveza" [(visible)]="display" [modal]="true" showEffect="fade"
         [style]="{width: '50vw', height: '95vh'}" [breakpoints]="{'960px': '75vw'}">
-        <app-form-cerveza [cerveza]="cervezaSeleccionada()"></app-form-cerveza>
+        <app-form-cerveza [cerveza]="cervezaSeleccionada()" [editionEnabled]="editionEnabled()"></app-form-cerveza>
     </p-dialog>
 </div>

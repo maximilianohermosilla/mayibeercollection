@@ -57,8 +57,9 @@
 
             <div class="mb-0">
                 <label for="contenido" class="block mb-1">* Contenido:</label>
-                <p-inputNumber [style]="{'minWidth':'100%'}" class="w-full mb-3" mode="decimal" [showButtons]="false" [required]="true"
-                    [min]="0" [max]="1000" id="contenido" formControlName="contenido" placeholder="0.0" suffix=" ml" />
+                <p-inputNumber [style]="{'minWidth':'100%'}" class="w-full mb-3" mode="decimal" [showButtons]="false"
+                    [required]="true" [min]="0" [max]="1000" id="contenido" formControlName="contenido"
+                    placeholder="0.0" suffix=" ml" />
                 <div *ngIf="formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched"
                     class="text-red-500">
                     El contenido es requerido.
@@ -67,13 +68,16 @@
 
             <div class="mb-0">
                 <label for="imagen" class="block mb-1">Imagen:</label>
-                <input pInputText class="w-full mb-3" style="padding:0.5rem;" id="imagen" formControlName="imagen"
-                    (blur)="onImagenUrlChange()" />
+                <div class="p-inputgroup">
+                    <input pInputText class="w-full mb-3" style="padding:0.5rem;" id="imagen" formControlName="imagen"
+                        (blur)="onImagenUrlChange()" />
+                    <app-file-upload (emitFileUpload)="onFileUploaded($event)" *ngIf="editionEnabled()"></app-file-upload>
+                </div>
             </div>
 
             <div class="mb-0">
                 <label for="observaciones" class="block mb-1">Observaciones:</label>
-                <textarea id="observaciones" pInputTextarea required rows="3" cols="20"
+                <textarea id="observaciones" pInputTextarea rows="3" cols="20"
                     class="p-inputtext p-component p-element p-inputnumber-input w-full mb-3" style="padding:0.5rem;"
                     formControlName="observaciones"></textarea>
             </div>
@@ -93,7 +97,8 @@
     <div class="flex justify-content-center my-4 gap-3">
         <button pButton class="p-button p-button-outlined p-button-danger" type="button" *ngIf="cerveza() != undefined"
             icon="pi pi-trash" label="Borrar" (click)="onDelete()"></button>
-        <button pButton class="p-button p-button-success" type="submit" icon="pi pi-check" label="Guardar"></button>
+        <button pButton class="p-button p-button-success" type="submit" icon="pi pi-check" label="Guardar"
+            [disabled]="formulario.invalid"></button>
     </div>
 </form>
 

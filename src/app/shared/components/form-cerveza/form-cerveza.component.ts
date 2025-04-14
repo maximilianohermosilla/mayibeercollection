@@ -22,16 +22,18 @@ import { Pais } from 'src/app/core/interfaces/pais';
 import { Ciudad } from 'src/app/core/interfaces/ciudad';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { FileUploadComponent } from "../file-upload/file-upload.component";
 
 @Component({
   selector: 'app-form-cerveza',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, MultiSelectModule, InputTextModule, ToastModule, 
-            MessagesModule, ButtonModule, ConfirmDialogModule, DropdownModule, InputNumberModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MultiSelectModule, InputTextModule, ToastModule,
+    MessagesModule, ButtonModule, ConfirmDialogModule, DropdownModule, InputNumberModule, FileUploadComponent],
   templateUrl: './form-cerveza.component.html',
   styleUrl: './form-cerveza.component.scss'
 })
 export class FormCervezaComponent implements OnInit{
   public cerveza = input<Cerveza | undefined>(undefined);
+  public editionEnabled = input<boolean>();
   
   public marcasService = inject(MarcasService);
   public estilosService = inject(EstilosService);
@@ -239,5 +241,12 @@ export class FormCervezaComponent implements OnInit{
 
       },
   });
+  }
+
+  public onFileUploaded(event: any){
+    this.imagenUrl.set(event ?? "");
+    this.formulario.patchValue({
+      ...this.formulario.value, imagen: event
+    });
   }
 }

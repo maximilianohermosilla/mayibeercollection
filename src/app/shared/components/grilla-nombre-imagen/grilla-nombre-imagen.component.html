@@ -6,7 +6,7 @@
             currentPageReportTemplate="{first}-{last} de {totalRecords} elementos" [rowHover]="true"
             dataKey="id">
             <ng-template pTemplate="caption">
-                <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center pl-0">
                     <button pButton class="p-button p-button-success" label="Agregar" icon="pi pi-plus"
                     (click)="openForm(undefined)"></button>
 
@@ -28,7 +28,7 @@
             <ng-template pTemplate="body" let-element>
                 <tr>
                     <td style="width:10%; min-width:10rem;"><span class="p-column-title">Image</span>
-                        <img [src]="element.imagen" [alt]="element.nombre" width="64px" height="64px" class="shadow-4" (error)="onImageError($event)"/>
+                        <img [src]="element.imagen" [alt]="element.nombre" width="84px" height="64px" class="shadow-4" (error)="onImageError($event)"/>
                     </td>
                     <td>
                         <span class="p-column-title">Nombre</span>

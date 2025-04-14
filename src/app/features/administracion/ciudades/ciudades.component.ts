@@ -40,7 +40,6 @@ export class CiudadesComponent implements OnInit {
 
 
     public handleElement(element: Ciudad) {
-        console.log('Dato recibido en page:', element);
         if (element && element!.id! > 0) {
             this.ciudadesService.Update(element).subscribe((response) => {
                 console.log(response);
@@ -56,7 +55,6 @@ export class CiudadesComponent implements OnInit {
     }
 
     public handleDeleteElement(element: Ciudad) {
-        console.log('Dato recibido para eliminar en page:', element);
         this.ciudadesService.Delete(element).subscribe((response) => {
             console.log(response);
             this.getAllCiudades();

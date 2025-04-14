@@ -21,7 +21,6 @@ export class EstilosComponent implements OnInit {
     }
 
     public handleElement(element: Estilo) {
-        console.log('Dato recibido en page:', element);
         if(element && element!.id! > 0){
             this.estilosService.Update(element).subscribe((response) => {
                 console.log(response);
@@ -37,7 +36,6 @@ export class EstilosComponent implements OnInit {
     }
 
     public handleDeleteElement(element: Estilo) {
-        console.log('Dato recibido para eliminar en page:', element);
         this.estilosService.Delete(element).subscribe((response) => {
             console.log(response);
             this.getEstilos();

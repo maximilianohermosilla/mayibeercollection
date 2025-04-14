@@ -21,7 +21,6 @@ export class MarcasComponent implements OnInit {
     }
 
     public handleElement(element: Marca) {
-        console.log('Dato recibido en page:', element);
         if(element && element!.id! > 0){
             this.marcasService.Update(element).subscribe((response) => {
                 console.log(response);
@@ -37,7 +36,6 @@ export class MarcasComponent implements OnInit {
     }
 
     public handleDeleteElement(element: Marca) {
-        console.log('Dato recibido para eliminar en page:', element);
         this.marcasService.Delete(element).subscribe((response) => {
             console.log(response);
             this.getMarcas();
