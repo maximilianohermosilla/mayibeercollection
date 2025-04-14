@@ -23,13 +23,11 @@ export class MarcasComponent implements OnInit {
     public handleElement(element: Marca) {
         if(element && element!.id! > 0){
             this.marcasService.Update(element).subscribe((response) => {
-                console.log(response);
                 this.getMarcas();
             });
         }
         else{
             this.marcasService.Create(element).subscribe((response) => {
-                console.log(response);
                 this.getMarcas();
             });
         }
@@ -37,7 +35,6 @@ export class MarcasComponent implements OnInit {
 
     public handleDeleteElement(element: Marca) {
         this.marcasService.Delete(element).subscribe((response) => {
-            console.log(response);
             this.getMarcas();
         });
     }

@@ -59,7 +59,6 @@ export class GrillaCiudadesComponent implements OnInit {
 
   public openForm(element: any) {
     if (element && element?.pais?.imagen) { element!.pais!.imagen = element?.pais?.imagen?.replace("/assets/placeholder.jpg", ""); }
-    console.log(element);
     this.selectedElement.set(element);
     this.display = true;
     this.cdr.detectChanges();

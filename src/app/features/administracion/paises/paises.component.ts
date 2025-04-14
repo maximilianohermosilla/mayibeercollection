@@ -24,13 +24,11 @@ export class PaisesComponent implements OnInit {
     public handleElement(element: Pais) {
         if(element && element!.id! > 0){
             this.paisesService.Update(element).subscribe((response) => {
-                console.log(response);
                 this.getPaises();
             });
         }
         else{
             this.paisesService.Create(element).subscribe((response) => {
-                console.log(response);
                 this.getPaises();
             });
         }
@@ -38,7 +36,6 @@ export class PaisesComponent implements OnInit {
 
     public handleDeleteElement(element: Pais) {
         this.paisesService.Delete(element).subscribe((response) => {
-            console.log(response);
             this.getPaises();
         });
     }

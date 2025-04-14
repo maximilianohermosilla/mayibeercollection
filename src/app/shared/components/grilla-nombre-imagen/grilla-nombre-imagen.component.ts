@@ -54,7 +54,6 @@ export class GrillaNombreImagenComponent implements OnInit {
 
   public openForm(element: any) {
     if (element && element.imagen) { element!.imagen = element?.imagen?.replace("/assets/placeholder.jpg", ""); }
-    console.log(element);
     this.selectedElement.set(element);
     this.display = true;
     this.cdr.detectChanges();
@@ -74,7 +73,6 @@ export class GrillaNombreImagenComponent implements OnInit {
   }
 
   public handleElement(element: Elemento) {
-    console.log('Dato recibido en el padre:', element);
     this.outputGrillaElement.emit(element);
     setTimeout(() => {
       this.display = false;
@@ -84,7 +82,6 @@ export class GrillaNombreImagenComponent implements OnInit {
   }
 
   public handleDeleteElement(element: Elemento) {
-    console.log('Dato recibido para eliminar en el padre:', element);
     this.deleteElement(element);
     setTimeout(() => {
       this.display = false;

@@ -44,7 +44,6 @@ export class FormCiudadesComponent implements OnInit{
     });
 
     effect(() => {
-      console.log(this.element())
       if (this.element() != undefined) {
         let element = this.element();
         this.imagenUrl.set(element!.pais!.imagen! ?? "");
@@ -79,14 +78,12 @@ export class FormCiudadesComponent implements OnInit{
   public onChangePais(event: any) {
     this.paisSeleccionado = event.value;
     let selectedPais = this.listaPaises.find(pais => pais.id === this.paisSeleccionado)
-    console.log(selectedPais)
     this.imagenUrl.set(selectedPais!.imagen || this.defaultImage);
     this.cdr.detectChanges();
   }  
 
   public onImagenChange(event: Event): void {
     const input = event.target as HTMLInputElement;
-    console.log(input)
     if (input.files && input.files[0]) {
       const file = input.files[0];
 
@@ -110,8 +107,6 @@ export class FormCiudadesComponent implements OnInit{
 
   public onSubmit(): void {
     if (this.formulario.valid) {
-
-      console.log('Formulario enviado:', this.formulario.value);
 
       if(this.formulario.value.id > 0){
         console.log("Update Element");

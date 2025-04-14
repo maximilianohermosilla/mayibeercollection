@@ -42,13 +42,11 @@ export class CiudadesComponent implements OnInit {
     public handleElement(element: Ciudad) {
         if (element && element!.id! > 0) {
             this.ciudadesService.Update(element).subscribe((response) => {
-                console.log(response);
                 this.getAllCiudades();
             });
         }
         else {
             this.ciudadesService.Create(element).subscribe((response) => {
-                console.log(response);
                 this.getAllCiudades();
             });
         }
@@ -56,7 +54,6 @@ export class CiudadesComponent implements OnInit {
 
     public handleDeleteElement(element: Ciudad) {
         this.ciudadesService.Delete(element).subscribe((response) => {
-            console.log(response);
             this.getAllCiudades();
         });
     }

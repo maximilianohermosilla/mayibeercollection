@@ -25,7 +25,6 @@ export class CervezasService {
         let urlService = `${this.url}/Cerveza/`
 
         return this.http.post<any>(urlService, element).pipe(map(data => {
-            console.log(data)
             return data;
         }));
     }

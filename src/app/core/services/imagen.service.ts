@@ -10,11 +10,8 @@ export class ImagenService {
     constructor(private http: HttpClient) { }
 
     public Create(formData: any, id: string): Observable<any> {
-        console.log(id)
         let urlService = `${this.url}/Image/`;
         let idToString = id.replace(/\s+/g, "-").replace(/[^a-zA-Z0-9-_]/g, "");
-        console.log(idToString);
-        console.log(formData);
         return this.http.post<any>(`${urlService}?id=${idToString}`, formData).pipe(map(data => {
             return data;
         }));

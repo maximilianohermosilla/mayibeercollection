@@ -149,7 +149,6 @@ export class FormCervezaComponent implements OnInit{
 
   public onImagenChange(event: Event): void {
     const input = event.target as HTMLInputElement;
-    console.log(input)
     if (input.files && input.files[0]) {
       const file = input.files[0];
 
@@ -174,21 +173,14 @@ export class FormCervezaComponent implements OnInit{
   public onSubmit(): void {
     if (this.formulario.valid) {
 
-      console.log('Formulario enviado:', this.formulario.value);
-
       if(this.formulario.value.id > 0){
-        console.log("Update Cerveza");
         this.cervezaService.Update(this.formulario.value).subscribe((response: any) => {
-          console.log(response);
-          //this.service.add({ key: 'tst', severity: 'success', summary: 'Confirmación', detail: 'Cerveza creado con éxito' });
           this.msgs = [];
           this.msgs.push({ severity: 'success', summary: 'Confirmación', detail: 'Cerveza actualizado con éxito' });
           setTimeout(() => { window.location.reload() }, 1000);
         });
       }else{
-        console.log("Create Cerveza");
         this.cervezaService.Create(this.formulario.value).subscribe((response: any) => {
-          console.log(response);
           this.msgs = [];
           this.msgs.push({ severity: 'success', summary: 'Confirmación', detail: 'Cerveza creado con éxito' });
           setTimeout(() => { window.location.reload() }, 1000);
@@ -200,23 +192,6 @@ export class FormCervezaComponent implements OnInit{
       this.msgs.push({ severity: 'error', summary: 'Error', detail: 'Debe completar todos los campos requeridos' });
     }
   }
-
-  // public filterPlataformas(){
-  //   let listaPlataformasNueva: any[] = [];
-  //   this.formulario.value.cervezaPlataformas.forEach((element: any) => {
-  //     console.log(element)
-  //     listaPlataformasNueva.push(element);
-  //   });
-  //   let listaPlataformasEliminar = this.listaPlataformasPrevias?.filter((item: any) => !listaPlataformasNueva.includes(item.idPlataforma));
-  //   let listaPlataformasAgregar = listaPlataformasNueva?.filter((id: any) => !this.listaPlataformasPrevias!.some((item) => item.idPlataforma === id));
-
-  //   this.formulario.value.cervezaPlataformas = listaPlataformasAgregar.map((p: any) => { 
-  //     return { id: 0, idCerveza: this.formulario.value.id, idPlataforma: p, url: this.formulario.value.url, idUsuario: this.userId, fecha: new Date().toISOString(), 
-  //     //  plataforma: this.listaPlataformas.find((plataforma: any) => plataforma.id == p) 
-  //     }
-  //   });
-    
-  // }
 
   public onDelete(){
     event?.preventDefault();
@@ -231,7 +206,6 @@ export class FormCervezaComponent implements OnInit{
 
       accept: () => {
           this.cervezaService.Delete(this.cerveza()!).subscribe((response) => {
-            console.log(response);
             this.msgs = [];
             this.msgs.push({ severity: 'success', summary: 'Confirmación', detail: 'Cerveza eliminado con éxito' });
             setTimeout(() => { window.location.reload() }, 1000);

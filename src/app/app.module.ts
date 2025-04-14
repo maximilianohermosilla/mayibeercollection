@@ -37,6 +37,7 @@ import { PaisesService } from './core/services/paises.service';
 import { EstilosService } from './core/services/estilos.service';
 import { MarcasService } from './core/services/marcas.service';
 import { ImagenService } from './core/services/imagen.service';
+import { UsuarioService } from './core/services/usuario.service';
 
 @NgModule({
     declarations: [
@@ -67,7 +68,7 @@ import { ImagenService } from './core/services/imagen.service';
         provideHttpClient((withInterceptors([ErrorHandlerInterceptor]))),
         { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptorService, multi: true },
         LoginService, DialogService, ErrorDialogService, SpinnerService, MessageService, ConfirmationService,
-        CiudadesService, PaisesService, EstilosService, MarcasService, CervezasService, ImagenService
+        CiudadesService, PaisesService, EstilosService, MarcasService, CervezasService, ImagenService, UsuarioService
     ],
     bootstrap: [AppComponent]
 })

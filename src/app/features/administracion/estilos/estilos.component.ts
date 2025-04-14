@@ -23,13 +23,11 @@ export class EstilosComponent implements OnInit {
     public handleElement(element: Estilo) {
         if(element && element!.id! > 0){
             this.estilosService.Update(element).subscribe((response) => {
-                console.log(response);
                 this.getEstilos();
             });
         }
         else{
             this.estilosService.Create(element).subscribe((response) => {
-                console.log(response);
                 this.getEstilos();
             });
         }
@@ -37,7 +35,6 @@ export class EstilosComponent implements OnInit {
 
     public handleDeleteElement(element: Estilo) {
         this.estilosService.Delete(element).subscribe((response) => {
-            console.log(response);
             this.getEstilos();
         });
     }

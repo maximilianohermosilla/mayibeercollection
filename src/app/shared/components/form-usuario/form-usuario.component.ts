@@ -11,24 +11,24 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { Elemento } from 'src/app/core/interfaces/elemento';
+import { Usuario } from 'src/app/core/interfaces/usuario';
 import { FileUploadComponent } from "../file-upload/file-upload.component";
 
 @Component({
-  selector: 'app-form-nombre-imagen',
+  selector: 'app-form-usuario',
   imports: [CommonModule, FormsModule, ReactiveFormsModule, MultiSelectModule, InputTextModule, ToastModule,
     MessagesModule, ButtonModule, ConfirmDialogModule, DropdownModule, InputNumberModule, FileUploadComponent],
-  templateUrl: './form-nombre-imagen.component.html',
-  styleUrl: './form-nombre-imagen.component.scss'
+  templateUrl: './form-usuario.component.html',
+  styleUrl: './form-usuario.component.scss'
 })
-export class FormNombreImagenComponent implements OnInit {
-  public element = input<Elemento>();
+export class FormUsuarioComponent implements OnInit {
+  public element = input<Usuario>();
 
   public formulario: FormGroup;
-  public defaultImage: string = "/assets/placeholder_horizontal.jpg";
+  public defaultImage: string = "/assets/avatar.png";
   public imagenUrl = signal<string | undefined>(undefined);
-  public outputElement = output<Elemento>();
-  public deleteElement = output<Elemento>();
+  public outputElement = output<Usuario>();
+  public deleteElement = output<Usuario>();
 
   public msgs: Message[] = [];
 
@@ -37,7 +37,12 @@ export class FormNombreImagenComponent implements OnInit {
     this.formulario = this.fb.group({
       id: [0],
       nombre: ['', Validators.required],
-      imagen: ['']
+      imagen: [''],
+      login: [''],
+      password: [''],
+      correo: [''],
+      idPerfil: [0],
+      habilitado: [true],
     });
 
     effect(() => {
@@ -48,10 +53,15 @@ export class FormNombreImagenComponent implements OnInit {
           ...element
         });
       } else {
-        let element: Elemento = {
+        let element: Usuario = {
           id: 0,
           nombre: '',
           imagen: '',
+          login: '',
+          password: '',
+          correo: '',
+          idPerfil: 1,
+          habilitado: true,
         };
         this.imagenUrl.set("");
         this.formulario.patchValue({
@@ -94,11 +104,11 @@ export class FormNombreImagenComponent implements OnInit {
     }
   }
 
-  public sendElement(element: Elemento) {
+  public sendElement(element: Usuario) {
     this.outputElement.emit(element);
     let accion = element && element.id && element!.id! > 0? " actualizado": " creado";
     this.msgs = [];
-    this.msgs.push({ severity: 'success', summary: 'Confirmación', detail: element!.nombre + accion + ' con éxito' });    
+    // this.msgs.push({ severity: 'success', summary: 'Confirmación', detail: element!.nombre + accion + ' con éxito' });    
     this.cdr.detectChanges();
   }
 

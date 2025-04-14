@@ -158,6 +158,5 @@ export class GrillaCervezasComponent implements OnInit {
     this.cervezaSeleccionada.set(Cerveza);
     this.display = true;
     this.cdr.detectChanges();
-    console.log(Cerveza)
   }
 }
